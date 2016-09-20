@@ -1,7 +1,5 @@
 # OpenGL最小入門
-OpenGLに少し勉強してみると意外と簡単だったのでご紹介します。
-3Dって難しそうというイメージがあるかもしれませんが、大まかなイメージはすぐに掴めると思います。
-この記事では以下を説明します。
+この記事では以下の視点からOpenGLについて理解を深めていきます。
 
 - 頂点と描画例
 - 透視投影とは
@@ -25,22 +23,24 @@ model.SetVertices({
 model.DrawLines(100.0f);
 ```
 描画するとこんな感じ。座標0が真ん中を表します。
+
 ![dot.png](https://qiita-image-store.s3.amazonaws.com/0/39587/4638725c-800d-24f4-aa8b-ab38b78adb30.png)
 
 ### 次に頂点を2つ表示
 もう一つ座標を追加し2つの頂点を指定します。
 ```cpp
 model.SetVertices({
-	 0.5f, 0, 0,
-	-0.5f, 0, 0,
+	0.5f, 0,    0,
+    0.7f, 0.5f, 0
 });
 model.SetDrawLines(100.0f);
 ```
 右上に点が追加されました。x座標が正だと右、y座標が正だと上に移動します。負の場合はそれぞれ逆方向に移動します。
+
 ![two_dot.png](https://qiita-image-store.s3.amazonaws.com/0/39587/dc9c4919-0c30-c764-0a2f-fbb87904f698.png)
 
 ### 線を表示
-座標を2つと「線を引く」命令で点が2ではなく、線となります。
+座標を2つと「線を引く」命令で線となります。
 ```cpp
 model.SetVertices({
      0.5f, 0, 0,
@@ -61,7 +61,6 @@ model.SetVertices({
 model.DrawLines(100.0f);
 ```
 
-簡単ですね！
 ![two_line.png](https://qiita-image-store.s3.amazonaws.com/0/39587/7dcac080-cbbe-aea4-6fb5-55b4cb1c38e2.png)
 
 ### そして三角形を表示
@@ -79,8 +78,8 @@ model.DrawTriangles({
 ```
 ![triangle.png](https://qiita-image-store.s3.amazonaws.com/0/39587/0c9af7d0-3060-25f2-1513-600605c6ad5f.png)
 
-描画順はこんな感じです。
 ![index.png](https://qiita-image-store.s3.amazonaws.com/0/39587/0f93cdcf-3103-5245-2952-87c1e73c7d41.png)
+描画順はこんな感じです。
 
 ### 最後に四角形を表示
 四角形は2つの三角形を合わせて描画します。ここでは4つの頂点と頂点インデックスの組み合わせで、2つの三角形を表現しています。
@@ -99,7 +98,7 @@ model.DrawTriangles({
 ![quadrangle.PNG](https://qiita-image-store.s3.amazonaws.com/0/39587/8205cf24-efea-3d67-5eae-c3cf2416b713.png)
 
 ## 透視投影とは
-透視投影(perspective projection)という図法を使えば3Dっぽく見せることができます。近くのものはより大きく、遠くのものはより小さく写す事で遠近感を出すものです。
+透視投影(perspective projection)という図法を使えば3Dっぽく見せることができます。近くのものはより大きく、遠くのものはより小さく写す事で遠近感を表現できます。
 
 透視投影のイメージ図。zが0に近い程に大きく、zが大きくなるに連れ小さく描画されます。
 >![透視投影法のイメージ画像](http://marupeke296.com/images/DXG_No70_img0002.gif "")
