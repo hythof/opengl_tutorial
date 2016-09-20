@@ -16,6 +16,7 @@
 
 ### まずは頂点を1つ表示
 座標情報と点の大きさを指定します。大きさを指定しないと点が小さすぎて見つけにくいので、大きめを指定します。
+
 ```cpp
 model.SetVertices({
 	 0., 0, 0,
@@ -28,6 +29,7 @@ model.DrawLines(100.0f);
 
 ### 次に頂点を2つ表示
 もう一つ座標を追加し2つの頂点を指定します。
+
 ```cpp
 model.SetVertices({
 	0.5f, 0,    0,
@@ -41,6 +43,7 @@ model.SetDrawLines(100.0f);
 
 ### 線を表示
 座標を2つと「線を引く」命令で線となります。
+
 ```cpp
 model.SetVertices({
      0.5f, 0, 0,
@@ -51,6 +54,7 @@ model.DrawLines(100.0f);
 ![line.png](https://qiita-image-store.s3.amazonaws.com/0/39587/dd454ae5-f336-a2e4-debf-f3826731e128.png)
 
 次に線を2本引いてみます。
+
 ```cpp
 model.SetVertices({
      0.5f, 0, 0,
@@ -83,6 +87,7 @@ model.DrawTriangles({
 
 ### 最後に四角形を表示
 四角形は2つの三角形を合わせて描画します。ここでは4つの頂点と頂点インデックスの組み合わせで、2つの三角形を表現しています。
+
 ```cpp
 model.SetVertices({
      0.5, -0.5, 0,
@@ -106,6 +111,7 @@ model.DrawTriangles({
 > 引用元サイトで透視投影の理論と計算方法の紹介もあります
 
 これまでと比べて少し複雑ですが、透視投影を使い右斜上からの視点で正方形を描画してみます。
+
 ```cpp
 // 正方形の頂点は8点、各頂点はx y zの3つを持つ
 model.SetVertices({
@@ -152,6 +158,7 @@ model.SetMVP(mvp);
 頂点シェーダーの例。
 全ての頂点に同じ処理を行えます。
 positionにプログラムで指定した(-1.0, 0.0, -0.5)とかの座標が、mvpには透視投影を行うための行列情報が格納されます。
+
 ```glsl
 #version 450
 layout (location = 0) in vec3 position;
@@ -165,6 +172,7 @@ void main()
 フラグメントシェーダーの例。
 描画対象のピクセルの色を決めています。
 vec4(赤, 緑, 青, 透明度)を表し、赤緑青の場合は全て1.0で白、全て0.0で黒を表しその中間で様々な色を表現します。透明度は1.0で不透明、0.0で透明(見えない)、その中間で半透明を表しています。
+
 ```glsl
 #version 450
 out vec4 out_color;
@@ -184,6 +192,7 @@ void main()
 
 ## サンプルプログラムの構成
 [githubのサンプルコード](https://github.com/hythof/opengl_tutorial)
+
 ```shell-session
 git clone https://github.com/hythof/opengl_tutorial.git
 ```
